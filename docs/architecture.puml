@@ -1,0 +1,14 @@
+@startuml Carrier_Lookup_API_Architecture
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+LAYOUT_TOP_DOWN()
+
+Person(developer, "Developer", "Interacts with the Carrier Lookup API through Swagger UI")
+
+Container(svc_api, "Carrier Lookup Service", "FastAPI", "Provides carrier information for phone numbers")
+ContainerDb(db, "Database", "SQLite", "Stores carrier data and logs")
+
+Rel(developer, svc_api, "Uses", "http, RESTful API")
+Rel(svc_api, db, "Reads/Writes")
+
+@enduml
